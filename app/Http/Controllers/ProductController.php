@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
+use App\Models\Product;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
+use Image;
 
-class UserController extends Controller
+class ProductController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +15,8 @@ class UserController extends Controller
      */
     public function index()
     {
-       $users = User::get();
-        return view('backend.modules.users.manage', compact('users'));
+       // $products = Product::get();
+        return view('backend.modules.products.manage');
     }
 
     /**
@@ -26,7 +26,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('backend.modules.users.create');
+        return view('backend.modules.products.create');
     }
 
     /**
@@ -37,21 +37,18 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-
-        $this->validate($request, [
-            'name' => ['required'],
-            'email' => 'required',
-            'password' => 'required|min:6'
-        ]);
+       $file = $request->file('image');
         $data = $request->all();
-        $data['password'] = Hash::make($request->password);
-        $data['role_id'] = 2;
-        User::create($data);
-        $notification = array(
-            'message' => 'User has been successfully added!',
-            'alert-type' => 'success'
-        );
-        return redirect()->route('users.index')->with($notification);
+        $data['user_id'] = 12;
+        global $fileName;
+        if ($request->hasFile('image')) {
+           // return 'ok';
+            $fileName = rand(0, 999999999) . '_' . date('Ymdhis') . '_' . rand(100, 999999999) . '.' . $file->getClientOriginalExtension();
+            Image::make($file)->resize(200, 200)->save(public_path('backend/uploads/products/') . $fileName);
+        }
+        $data['image'] = $fileName;
+        Product::create($data);
+        return back();
     }
 
     /**

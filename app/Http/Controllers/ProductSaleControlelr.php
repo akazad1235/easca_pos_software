@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 
-class UserController extends Controller
+class ProductSaleControlelr extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +13,7 @@ class UserController extends Controller
      */
     public function index()
     {
-       $users = User::get();
-        return view('backend.modules.users.manage', compact('users'));
+        //
     }
 
     /**
@@ -26,7 +23,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('backend.modules.users.create');
+        //
     }
 
     /**
@@ -37,21 +34,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-
-        $this->validate($request, [
-            'name' => ['required'],
-            'email' => 'required',
-            'password' => 'required|min:6'
-        ]);
-        $data = $request->all();
-        $data['password'] = Hash::make($request->password);
-        $data['role_id'] = 2;
-        User::create($data);
-        $notification = array(
-            'message' => 'User has been successfully added!',
-            'alert-type' => 'success'
-        );
-        return redirect()->route('users.index')->with($notification);
+        //
     }
 
     /**
