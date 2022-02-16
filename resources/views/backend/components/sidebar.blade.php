@@ -69,6 +69,25 @@
                     </ul>
                 </li>
             </ul>
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon far fa-envelope"></i>
+                        <p>
+                            Sales Product
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{route('sales.index')}}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Manage</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
         </nav>
         <!-- /.sidebar-menu -->
     </div>

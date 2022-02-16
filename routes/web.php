@@ -20,12 +20,14 @@ Route::get('/', function () {
     return view('backend.dashboard');
 });
 
+Route::resource('users', UserController::class);
+Route::resource('products', ProductController::class);
+Route::resource('sales', ProductController::class);
+
 //Route::prefix('users')->name('users.')->group(function(){
 //
 //});
-Route::resource('users', UserController::class);
-Route::resource('products', ProductController::class);
-Route::resource('products/sales', ProductController::class);
+
 
 Auth::routes();
 

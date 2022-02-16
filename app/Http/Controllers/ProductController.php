@@ -15,8 +15,9 @@ class ProductController extends Controller
      */
     public function index()
     {
+
        // $products = Product::get();
-        return view('backend.modules.products.manage');
+        return view('backend.modules.product_sales.add');
     }
 
     /**
@@ -26,6 +27,7 @@ class ProductController extends Controller
      */
     public function create()
     {
+
         return view('backend.modules.products.create');
     }
 
@@ -59,6 +61,7 @@ class ProductController extends Controller
      */
     public function show($id)
     {
+
         //
     }
 

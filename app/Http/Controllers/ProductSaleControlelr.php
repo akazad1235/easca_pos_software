@@ -13,7 +13,7 @@ class ProductSaleControlelr extends Controller
      */
     public function index()
     {
-        //
+        return view('backend.moduels.product_sales.add');
     }
 
     /**
