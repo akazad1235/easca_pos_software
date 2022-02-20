@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductSaleControlelr;
+use App\Http\Controllers\OrderController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,6 +24,8 @@ Route::get('/', function () {
 Route::resource('users', UserController::class);
 Route::resource('products', ProductController::class);
 Route::resource('sales', ProductController::class);
+Route::post('order/send', [OrderController::class, 'store'])->name('order.store');
+Route::get('order/invoice/{invoiceId}', [OrderController::class, 'invoice'])->name('order.invoice');
 
 
 //Route::prefix('users')->name('users.')->group(function(){

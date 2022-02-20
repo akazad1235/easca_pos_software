@@ -6,7 +6,8 @@
              <div class="col-md-5">
                 <div class="card card-primary">
                     <h2>cole one</h2>
-                    <form>
+                    <form action="{{route('order.store')}}" method="post">
+                        @csrf
                     <table class="table">
                         <thead>
                         <tr>

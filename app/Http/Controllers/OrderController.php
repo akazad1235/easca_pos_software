@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Order;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {
@@ -35,7 +36,21 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+      //  return $request->all();
+        //return count($request->inputProductId);
+        $orderIdNo = mt_rand(000000,999999);
+        for ($i=0; $i<count($request->inputProductId); $i++){
+            Order::create([
+                'user_id' => 54,
+                'customer_id' => 2,
+                'product_id' => $request->inputProductId[$i],
+                'quantity' => $request->quantity[$i],
+                'total_price' => (int)$request->inputPrice[$i],
+                'order_id' => $orderIdNo
+            ]);
+        }
+        return redirect()->route('order.invoice', $orderIdNo);
+
     }
 
     /**
@@ -81,5 +96,10 @@ class OrderController extends Controller
     public function destroy(Order $order)
     {
         //
+    }
+    public function invoice($invoiceId){
+
+      return  Order::where('order_id', $invoiceId)->get();
+
     }
 }
