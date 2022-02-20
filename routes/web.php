@@ -24,6 +24,7 @@ Route::resource('users', UserController::class);
 Route::resource('products', ProductController::class);
 Route::resource('sales', ProductController::class);
 
+
 //Route::prefix('users')->name('users.')->group(function(){
 //
 //});
